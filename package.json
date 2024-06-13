@@ -6,7 +6,10 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prepublish": "cd ./projects/stk-core && npm run release ",
+    "publish": "npm run build && cd ./dist/stk-core && npm publish --registry https://localhost:4873",
+    "postpublish": "git push --follow-tags origin master"
   },
   "private": true,
   "dependencies": {
@@ -18,11 +21,13 @@
     "@angular/platform-browser": "^18.0.0",
     "@angular/platform-browser-dynamic": "^18.0.0",
     "@angular/router": "^18.0.0",
+    "@stk/srv": "file:../stk-ws-srv/dist/stk-srv",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^18.0.4",
     "@angular/cli": "^18.0.3",
     "@angular/compiler-cli": "^18.0.0",
     "@types/jasmine": "~5.1.0",
@@ -32,6 +37,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "^18.0.0",
     "typescript": "~5.4.2"
   }
 }
